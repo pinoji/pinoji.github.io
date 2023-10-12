@@ -17,8 +17,14 @@ body {
 
 .header-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* Display the image and text side by side */
     align-items: center;
+    justify-content: center; /* Center the content horizontally */
+}
+
+.header-text {
+    padding: 20px;
+    text-align: left;
 }
 
 .header img {
@@ -29,7 +35,7 @@ body {
 }
 
 .header-title {
-    font-size: 24px;
+    font-size: 36px;
 }
 
 /* Main content styles */
@@ -47,13 +53,20 @@ body {
 }
 
 .chapter-item {
+    display: flex; /* Use flexbox layout for the chapter items */
+    align-items: center; /* Vertically align the content */
     margin: 20px 0;
+}
+.image-and-summary {
+    display: flex; /* Use flexbox layout to position image and summary horizontally */
+    align-items: center; /* Vertically align the content */
 }
 
 .pdf-preview {
     width: 800px;
     height: auto;
     display: block;
+    margin-right: 20px; /* Add some spacing between image and summary */
 }
 
 .chapter-name {
@@ -61,6 +74,22 @@ body {
     margin-top: 10px;
     font-weight: bold;
     text-align: center;
+}
+
+.chapter-summary {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    width: 300px; /* Adjust the width of the summary box */
+}
+
+.chapter-summary h3 {
+    font-size: 18px;
+}
+
+.chapter-summary p {
+    font-size: 14px;
 }
 
 /* Set the background image */
