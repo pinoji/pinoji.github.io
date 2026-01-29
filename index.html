@@ -1,198 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css"> <!-- Link to an external CSS file for better organization -->
-    <title>州立大学で物理化学教えてます。講義ノートの日本語訳</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hideya Koizumi — Physical Chemistry Textbooks</title>
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe 
+UI",Roboto,Arial,sans-serif;
+           margin:0; background:#fafafa; color:#111; }
+    header { background:#fff; border-bottom:1px solid #eee; padding:48px 
+18px; }
+    main { max-width: 980px; margin: 0 auto; padding: 22px 18px 60px; }
+    .sub { color:#444; line-height:1.6; max-width: 70ch; }
+    .grid { display:grid; 
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; 
+margin-top:18px; }
+    .card { background:#fff; border:1px solid #eee; border-radius:14px; 
+padding:18px;
+            box-shadow:0 2px 10px rgba(0,0,0,.04); }
+    .card h2 { margin:0 0 8px; font-size:18px; }
+    .card p { margin:0 0 12px; color:#444; line-height:1.5; }
+    a.btn { display:inline-block; padding:10px 12px; border-radius:10px; 
+text-decoration:none;
+            border:1px solid #ddd; background:#f6f6f6; color:#111; 
+margin-right:8px; }
+    a.btn:hover { background:#efefef; }
+    footer { color:#666; text-align:center; padding:20px 0 0; }
+  </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <img src="pic.jpeg" alt="Instructor at Kyoto">
-			<h2 class="header-title">州立大学三年生用の物理化学　2023年に僕が実際使用している講義ノートの和訳</h2>
-
-        </div>
-    </header>
-    <main class="main-content">
-        <h2 class="main-title">クリックするとpdfが開きます。僕の授業では１週間でおよそ一章をカバーします。通常の教科書は高いので僕は使っていません。全てLaTexで書かれた講義ノートをChatGPTで和訳したもです。生徒目線では色々詳細が抜けているかもしれませんがそこは授業で説明します。その間、生徒は各章ごとのプリントを渡しているので各々自分が必要な所を上書きしていくといった授業スタイルです。英文ソースはGithubを見てください。公開する予定はありませんがテストや演習など興味があれば連絡してください。教員の方でDMして貰えれば全て渡します。</h2>
-        <ul class="chapter-list">
-           <li class="chapter-item">
-               <a href="Intro_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="Intro_JP.jpg" alt="Chapter 0 Preview">
-                       <div class="chapter-summary">
-                           <h3>序章</h3>
-                                    <p>前書きです。過去5年ほど実際に僕が教えているクラスで使用していますが毎年少しずつ更新しています。一応教科書にもなる程度の内容はカバーしていると思います。AIを使った和訳なので間違いや指摘があれば連絡してください。 一応アメリカのGREで物理化学の問題に絞ればほぼ満点が来る程度の内容はカバーしてあると思います。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-           <li class="chapter-item">
-               <a href="PCCH1_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH1_JP.jpg" alt="Chapter 1 Preview">
-                       <div class="chapter-summary">
-                           <h3>第一章</h3>
-                           <p>実際これで十分とは思いませんがこれだけ知っていれば結構な専門書が読めると思います。あくまでも物理化学なので数学の教科書のように厳密に書いていくスタイルは避けてある程度イメージや感覚的な事を重視して書きました。基本的に行列、ベクトル空間、フーリエ変換、線形変換、線形演算子、確率常微分方程式などが書かれています。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>		   
-           <li class="chapter-item">
-               <a href="PCCH2_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH2_JP.jpg" alt="Chapter 2 Preview">
-                       <div class="chapter-summary">
-                           <h3>第2章</h3>
-                           <p>歴史的な発見、特にプランクの黒体放射に関する研究、アインスタインの光電効果に関する研究、ボーアの水素モデル、ハイゼンバーグの不確定原理などが書かれています。不確定原理についての詳しい証明（フーリエ変換版)は付録を見てください。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-           <li class="chapter-item">
-               <a href="PCCH3_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH3_JP.jpg" alt="Chapter 3 Preview">
-                       <div class="chapter-summary">
-                           <h3>第3章</h3>
-                           <p>波動方程式からシュレディンガー方程式の導入、そして量子力学の公理を紹介しました。公理に含まれているエルミート演算子についての演習、固有値や固有ベクトルに関して正規、直交を理解、そして可換性を使ったもう一つの不確定原理の証明などが付録を通して触れられています。最後に時間依存量子力学について僅かですが触れました。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-		   <li class="chapter-item">
-               <a href="PCCH4_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH4_JP.jpg" alt="Chapter 4 Preview">
-                       <div class="chapter-summary">
-                           <h3>第4章</h3>
-                           <p>量子力学の導入としてよく使われる「箱の中の粒子」問題、単体調和振動子、重心と帰納質量による２体から１体問題への変換、モースポテンシャル、L-Jポテンシャル、１体剛体回転とその拡張が書かれています。これらの問題は原子の動きに関連しており後期の統計熱力学に使われます。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-		   <li class="chapter-item">
-               <a href="PCCH5_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH5_JP.jpg" alt="Chapter 5 Preview">
-                       <div class="chapter-summary">
-                           <h3>第5章</h3>
-                           <p>この章では電子が1個、原子核も1個の系を考えます。前章で導いた解などを再利用しながらこの系の全ての電子軌道を導入します。電子ー原子核のポテンシャルの中で球体座標を使い、シュレディンガー方程式の解を導入します。球面調和関数、動径波動関数、関連ラゲール多項式等がMathematicaを使って可視化します。そして量子数同士の関連性など一般科学で触れなかった事に次いで議論します。そして原子単位を使ってシュレディンガー方程式をより単純な無次元方程式に変換します。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH6_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH6_JP.jpg" alt="Chapter 6 Preview">
-                       <div class="chapter-summary">
-                           <h3>第6章</h3>
-                           <p>この章では変分原理を用いてよく使われる近似法について学習します。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH7_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH7_JP.jpg" alt="Chapter 7 Preview">
-                       <div class="chapter-summary">
-                           <h3>第7章</h3>
-                           <p>この章では排他原理とフントの原理について学びます。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH8_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH8_JP.jpg" alt="Chapter 8 Preview">
-                       <div class="chapter-summary">
-                           <h3>第8章</h3>
-                           <p>この章では原子の項記号について学びます。そして可能な項記号の中から一番エネルギー値の低い項記号を選ぶ訓練をします。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH9_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH9_JP.jpg" alt="Chapter 9 Preview">
-                       <div class="chapter-summary">
-                           <h3>第9章</h3>
-                           <p>この章では二つの原子からなる分子結合について学びます。そして可能な項記号の中から一番エネルギー値の低い項記号を選ぶ訓練をします。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH10_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH10_JP.jpg" alt="Chapter 10 Preview">
-                       <div class="chapter-summary">
-                           <h3>第10章</h3>
-                           <p>この章ではハイブリッド軌道について学びます。よく有機化学などで使われるコンセプトです。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH11_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH11_JP.jpg" alt="Chapter 11 Preview">
-                       <div class="chapter-summary">
-                           <h3>第11章</h3>
-                           <p>この章では対称性、群論、表現論、および化学への応用について考察します。数学的に難しいコンセプトですがやり方だけ分かっていれば化学の応用にほぼ対応出来ます。数学的に興味のある方は代数や群論などの数学のクラスを取る事をお勧めします。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH12_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH12_JP.jpg" alt="Chapter 12 Preview">
-                       <div class="chapter-summary">
-                           <h3>第12章</h3>
-                           <p>この章では分子スペクトロスコピーについて学びます。よく分析化学などで使われるコンセプトです。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCCH13_JP.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCCH13_JP.jpg" alt="Chapter 12 Preview">
-                       <div class="chapter-summary">
-                           <h3>第12章</h3>
-                           <p>この章ではフックル法を用いて共役π 結合について学びます。よく有機化学などで使われるコンセプトです。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-
-		   <li class="chapter-item">
-               <a href="PCAPP1.pdf">
-                   <div class="image-and-summary">
-                       <img class="pdf-preview" src="PCAPP1.jpg" alt="Appendix">
-                       <div class="chapter-summary">
-                           <h3>付録</h3>                          <p>ほぼ数式なので残りの僅かな説明は日本語訳はしていません。２通りの不確定原理の証明、位相空間において占有される単一の状態の平均体積の準古典的観点,オイラーの公式、ラグランジュ乗数と化学ポテンシャル等が証明又は導入されっています。これらに関する計算ラボの資料はのちに公開します。後、熱力学や統計力学は春学期に公開する予定です。ここに書かれている内容は別にカバーしなくてはいけないというものではありませんが僕は個人的に好きなので毎回全てカバーします。</p>
-                       </div>
-                   </div>
-               </a>
-           </li>
-            <!-- Add more chapters here with corresponding preview images and links -->
-        </ul>
+  <header>
+    <main>
+      <h1>Physical Chemistry Resources</h1>
+      <p class="sub">Textbooks and teaching materials hosted on GitHub 
+Pages.</p>
     </main>
-    <!-- The rest of your content goes here -->
+  </header>
+
+  <main>
+    <div class="grid">
+      <div class="card">
+        <h2>Computational Physical Chemistry (EN)</h2>
+        <p>Interactive textbook and course materials.</p>
+        <a class="btn" 
+href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open 
+site</a>
+        <a class="btn" 
+href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repo</a>
+      </div>
+
+      <div class="card">
+        <h2>JP-PChemTextBook (JP)</h2>
+        <p>Japanese version / notes.</p>
+        <a class="btn" 
+href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
+        <a class="btn" 
+href="https://github.com/pinoji/JP-PChemTextBook">Repo</a>
+      </div>
+
+      <div class="card">
+        <h2>Other projects</h2>
+        <p>
+          <a 
+href="https://github.com/pinoji/Wavelet-Transfrom">Wavelet-Transfrom</a><br>
+          <a 
+href="https://github.com/pinoji/Physical_Chemistry">Physical_Chemistry</a>
+        </p>
+      </div>
+    </div>
+
+    <footer>© <span id="y"></span> Hideya Koizumi</footer>
+  </main>
+
+  <script>document.getElementById("y").textContent = new 
+Date().getFullYear();</script>
 </body>
 </html>
+
