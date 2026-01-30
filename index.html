@@ -10,8 +10,8 @@
       --primary-blue: #007bff;
       --border-color: #dee2e6;
       --sidebar-bg: #f8f9fa;
-      --anchor-gold: #c49a6c; /* Matching your screenshot */
-      --utility-bg: #111; /* Matching your screenshot */
+      --anchor-gold: #c49a6c;
+      --utility-bg: #111;
     }
 
     body {
@@ -32,6 +32,7 @@
       height: 100vh;
       padding: 1.5rem;
       overflow-y: auto;
+      z-index: 1000;
     }
 
     .sidebar h3 { font-size: 1.1rem; color: #444; margin-bottom: 1.5rem; }
@@ -54,34 +55,36 @@
       flex-grow: 1;
       display: flex;
       flex-direction: column;
+      width: calc(100% - var(--sidebar-width));
     }
 
-    /* Dark Top Utility Bar */
+    /* Responsive Sticky Top Bar */
     .top-bar {
       background-color: var(--utility-bg);
       color: #fff;
       display: flex;
       justify-content: space-between;
-      padding: 10px 25px;
+      padding: 0.75rem 1.5rem;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 900;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .top-bar-right {
       display: flex;
-      gap: 20px;
-      font-size: 1.2rem;
-      opacity: 0.8;
+      gap: 1.5rem;
+      font-size: 1.1rem;
     }
 
-    .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+    .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 0; }
 
-    /* Page Content Padding */
+    /* Inner Page Content */
     .inner-content {
-      padding: 3rem 4rem;
-      max-width: 850px;
+      padding: 2rem 3rem;
+      max-width: 900px;
       line-height: 1.6;
     }
 
@@ -91,6 +94,7 @@
       margin-bottom: 2rem;
       font-size: 0.85rem;
       color: #6c757d;
+      align-items: center;
     }
 
     .github-link {
@@ -101,14 +105,12 @@
       gap: 6px;
     }
 
-    /* Typography & Anchors */
+    /* Typography & Gold Anchor */
     h1 { 
       font-size: 2.25rem; 
       font-weight: 700; 
       margin-top: 0;
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      line-height: 1.2;
     }
     
     .anchor {
@@ -117,6 +119,7 @@
       font-weight: 400;
       text-decoration: none;
       font-size: 1.8rem;
+      margin-left: 10px;
     }
 
     h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
@@ -131,10 +134,18 @@
       color: var(--primary-blue);
       margin-right: 10px;
       font-weight: 500;
+      margin-top: 10px;
     }
     .btn.primary { background-color: var(--primary-blue); color: #fff; border: none; }
 
     footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #6c757d; font-size: 0.9rem; }
+
+    /* Responsive Mobile Adjustments */
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .content { margin-left: 0; width: 100%; }
+      .inner-content { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -174,25 +185,25 @@
         <section id="research">
           <h1>Physical Chemistry Through Computer Simulations <a href="#research" class="anchor">#</a></h1>
           <p>
-            I teach Physical Chemistry at <strong>Arkansas State University</strong>. 
+            I am an Associate Professor of Physical Chemistry at <strong>Arkansas State University</strong>. 
             My research focuses on developing high-performance computational methodologies to quantify complex molecular and biomolecular interactions.
           </p>
           <p>
-            Our current work involves ab initio and DFT techniques, with a central interest in molecular dynamics simulations of large biological complexes. 
+            Current research involves ab initio and DFT techniques, with a central interest in molecular dynamics simulations of large biological complexes. 
             Specifically, we are elucidating binding mechanics in enzyme-inhibitor complexes within highly flexible protein environments.
           </p>
         </section>
 
         <section id="textbook-en">
           <h2>Computational Physical Chemistry (EN) <a href="#textbook-en" class="anchor">#</a></h2>
-          <p>Complete Undergraduate Physical Chemistry Textbook and interactive course materials.</p>
+          <p>Interactive textbook and course materials for undergraduate studies.</p>
           <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
           <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
         </section>
 
         <section id="textbook-jp">
           <h2>JP-PChemTextBook (JP) <a href="#textbook-jp" class="anchor">#</a></h2>
-          <p>Japanese version and instructional notes for Physical Chemistry.</p>
+          <p>Japanese version and lecture notes for Physical Chemistry.</p>
           <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
           <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repository</a>
         </section>
@@ -208,7 +219,7 @@
 
         <footer>
           <p>
-            Contact: <a href="mailto:hkoizumi@astate.edu" style="color: #666;">hkoizumi@astate.edu</a><br>
+            Contact: <a href="mailto:hkoizumi@astate.edu" style="color: #666; text-decoration: none;">hkoizumi@astate.edu</a><br>
             © <span id="y"></span> Hideya Koizumi & Eiko Koizumi.
           </p>
         </footer>
