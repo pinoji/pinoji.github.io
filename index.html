@@ -4,75 +4,135 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hideya Koizumi — Physical Chemistry Textbooks</title>
-  <style>
-    body { font-family: -apple-system,BlinkMacSystemFont,"Segoe 
-UI",Roboto,Arial,sans-serif;
-           margin:0; background:#fafafa; color:#111; }
-    header { background:#fff; border-bottom:1px solid #eee; padding:48px 
-18px; }
-    main { max-width: 980px; margin: 0 auto; padding: 22px 18px 60px; }
-    .sub { color:#444; line-height:1.6; max-width: 70ch; }
-    .grid { display:grid; 
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; 
-margin-top:18px; }
-    .card { background:#fff; border:1px solid #eee; border-radius:14px; 
-padding:18px;
-            box-shadow:0 2px 10px rgba(0,0,0,.04); }
-    .card h2 { margin:0 0 8px; font-size:18px; }
-    .card p { margin:0 0 12px; color:#444; line-height:1.5; }
-    a.btn { display:inline-block; padding:10px 12px; border-radius:10px; 
-text-decoration:none;
-            border:1px solid #ddd; background:#f6f6f6; color:#111; 
-margin-right:8px; }
-    a.btn:hover { background:#efefef; }
-    footer { color:#666; text-align:center; padding:20px 0 0; }
+<style>
+	:root {
+	  --sidebar-width: 280px;
+	  --primary-blue: #007bff;
+	  --text-main: #333;
+	  --border-color: #e1e4e8;
+	}
+
+	body { 
+	  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+	  margin: 0; 
+	  background: #fff; 
+	  color: var(--text-main);
+	  line-height: 1.6;
+	}
+
+	.wrapper { display: flex; min-height: 100vh; }
+
+	/* Sidebar Styling */
+	.sidebar {
+	  width: var(--sidebar-width);
+	  border-right: 1px solid var(--border-color);
+	  background: #f8f9fa;
+	  position: fixed;
+	  height: 100vh;
+	  padding: 20px;
+	}
+
+	.sidebar-header h3 { font-size: 1.2rem; margin-bottom: 2rem; }
+
+	.nav-links { list-style: none; padding: 0; }
+	.nav-links li { margin-bottom: 10px; }
+	.nav-links a { 
+	  text-decoration: none; 
+	  color: #555; 
+	  font-weight: 500;
+	  display: block;
+	  padding: 8px;
+	  border-radius: 6px;
+	}
+	.nav-links a:hover { background: #e9ecef; color: var(--primary-blue); }
+
+	/* Content Styling */
+	.content {
+	  margin-left: var(--sidebar-width);
+	  padding: 40px 60px;
+	  max-width: 900px;
+	}
+
+	h1 { font-size: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+	h2 { font-size: 1.8rem; margin-top: 40px; }
+
+	.btn {
+	  display: inline-block;
+	  padding: 8px 16px;
+	  border-radius: 6px;
+	  text-decoration: none;
+	  border: 1px solid var(--border-color);
+	  background: #fff;
+	  color: #0366d6;
+	  margin-right: 10px;
+	  font-weight: 500;
+	}
+
+	.btn.primary { background: var(--primary-blue); color: #fff; border: none; }
+
   </style>
 </head>
 <body>
-  <header>
-    <main>
-      <h1>Hideya Koizumi's Research Topics and Teaching Related Materials </h1>
-      <p class="sub">I am interested in computational methodologies for quantifying complex molecular and biomolecular interactions. My work ab initio and DFT techniques to characterize fundamental energetic properties. Molecular dynamics simulations of large biological complexes are my central interest at this point. Our most recent research introduces a novel approach designed to elucidate binding mechanics in enzyme-inhibitor complexes where ligand binding occurs within highly flexible protein environments. I teach Physical Chemistry classes at Arkansas State University (How to reach me （hkoizumi at astate dot edu）). Complete Undergraduate Physical Chemistry Textbooks are available on this GitHub Pages. Please feel free to use it if you are planning to use it in class.  Also, some codes relating to some of my research topics are available.      </p>
-    </main>
-  </header>
-
-  <main>
-    <div class="grid">
-      <div class="card">
-        <h2>Computational Physical Chemistry (EN)</h2>
-        <p>Interactive textbook and course materials.</p>
-        <a class="btn" 
-href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open 
-site</a>
-        <a class="btn" 
-href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repo</a>
+  <div class="wrapper">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="your-logo-or-photo.jpg" alt="Logo" class="logo">
+        <h3>Physical Chemistry</h3>
       </div>
+      <ul class="nav-links">
+        <li><a href="#research">Research Topics</a></li>
+        <li><a href="#textbook-en">P-Chem Textbook (EN)</a></li>
+        <li><a href="#textbook-jp">P-Chem Textbook (JP)</a></li>
+        <li><a href="#projects">Other Projects</a></li>
+      </ul>
+    </nav>
 
-      <div class="card">
-        <h2>JP-PChemTextBook (JP)</h2>
-        <p>Japanese version / notes.</p>
-        <a class="btn" 
-href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
-        <a class="btn" 
-href="https://github.com/pinoji/JP-PChemTextBook">Repo</a>
-      </div>
+<main class="content">
+  <div class="content-header">
+    <span class="breadcrumb">Contents > Index</span>
+    <a href="https://github.com/pinoji" class="github-link">
+       <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16" style="vertical-align: middle;"> Repository
+    </a>
+  </div>
 
-      <div class="card">
-        <h2>Other projects</h2>
-        <p>
-          <a 
-href="https://github.com/pinoji/WEIE">WEIE</a><br>
-          <a 
-href="https://github.com/pinoji/Physical_Chemistry">Physical_Chemistry</a>
-        </p>
-      </div>
-    </div>
+  <section id="research">
+    <h1>Research Topics and Teaching</h1>
+    <p>I am interested in computational methodologies for quantifying complex molecular and biomolecular interactions. My work utilizes ab initio and DFT techniques to characterize fundamental energetic properties. Molecular dynamics simulations of large biological complexes are my central interest at this point. Our most recent research introduces a novel approach designed to elucidate binding mechanics in enzyme-inhibitor complexes where ligand binding occurs within highly flexible protein environments.</p>
+  </section>
 
-    <footer>© <span id="y"></span> Hideya Koizumi</footer>
-  </main>
+  <hr>
 
-  <script>document.getElementById("y").textContent = new 
-Date().getFullYear();</script>
+  <section id="textbook-en">
+    <h2>Computational Physical Chemistry (EN)</h2>
+    <p>Interactive textbook and course materials.</p>
+    <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open Site</a>
+    <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
+  </section>
+
+  <section id="textbook-jp">
+    <h2>JP-PChemTextBook (JP)</h2>
+    <p>Japanese version / notes.</p>
+    <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open Site</a>
+    <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repository</a>
+  </section>
+
+  <hr>
+
+  <section id="projects">
+    <h2>Other Projects</h2>
+    <p>Additional resources and research-related code:</p>
+    <ul style="line-height: 2;">
+      <li><a href="https://github.com/pinoji/WEIE" style="color: #0366d6; text-decoration: none;">WEIE</a></li>
+      <li><a href="https://github.com/pinoji/Physical_Chemistry" style="color: #0366d6; text-decoration: none;">Physical_Chemistry</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>© <span id="y"></span> Hideya Koizumi — Arkansas State University</p>
+  </footer>
+</main>
+  </div>
 </body>
+
 </html>
 
