@@ -11,13 +11,14 @@
       --anchor-gold: #c49a6c;
       --utility-bg: #111;
       
-      /* Light Theme */
+      /* Light Theme Variables */
       --bg-color: #ffffff;
       --text-color: #333333;
       --sidebar-bg: #f8f9fa;
       --border-color: #dee2e6;
     }
 
+    /* Dark Theme Variables */
     body.dark-mode {
       --bg-color: #121212;
       --text-color: #e0e0e0;
@@ -36,7 +37,7 @@
 
     .wrapper { display: flex; min-height: 100vh; position: relative; }
 
-    /* Retractable Sidebar */
+    /* Retractable Sidebar Styling */
     .sidebar {
       width: var(--sidebar-width);
       background-color: var(--sidebar-bg);
@@ -50,11 +51,11 @@
       left: 0;
     }
 
-    /* Class to hide sidebar */
+    /* Hidden state for retractable effect */
     .sidebar.hidden { transform: translateX(-100%); }
 
     .sidebar h3 { font-size: 1.1rem; color: var(--text-color); margin-bottom: 1.5rem; }
-    .nav-links { list-style: none; padding: 0; }
+    .nav-links { list-style: none; padding: 0; margin: 0; }
     .nav-links li { margin-bottom: 0.5rem; }
     .nav-links a {
       text-decoration: none;
@@ -73,14 +74,13 @@
       flex-grow: 1;
       width: calc(100% - var(--sidebar-width));
       transition: margin-left 0.3s ease, width 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
 
-    .content.full-width {
-      margin-left: 0;
-      width: 100%;
-    }
+    .content.full-width { margin-left: 0; width: 100%; }
 
-    /* Sticky Top Bar */
+    /* Responsive Sticky Top Bar */
     .top-bar {
       background-color: var(--utility-bg);
       color: #fff;
@@ -91,13 +91,14 @@
       position: sticky;
       top: 0;
       z-index: 900;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .top-bar-right { display: flex; gap: 1.5rem; font-size: 1.1rem; align-items: center; }
     .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 5px; }
-    .icon-btn:hover { opacity: 0.7; }
 
-    /* Dropdown for Download */
+    /* Dropdown for Download Button */
     .dropdown { position: relative; display: inline-block; }
     .dropdown-content {
       display: none;
@@ -120,12 +121,13 @@
     .dropdown-content a:hover { background-color: var(--primary-blue); color: white; }
     .show { display: block; }
 
+    /* Inner Page Content */
     .inner-content { padding: 2rem 3rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
-    
-    /* Typography & Anchors */
-    h1 { font-size: 2.25rem; font-weight: 700; margin-top: 0; }
-    .anchor { color: var(--anchor-gold); font-family: serif; text-decoration: none; margin-left: 10px; }
+
+    /* Typography & Gold Anchor */
+    h1 { font-size: 2.25rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
     h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+    .anchor { color: var(--anchor-gold); font-family: serif; text-decoration: none; margin-left: 10px; font-size: 1.8rem; }
 
     .btn {
       display: inline-block;
@@ -142,6 +144,7 @@
 
     footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #6c757d; font-size: 0.9rem; }
 
+    /* Mobile Logic */
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); }
       .sidebar.active { transform: translateX(0); }
@@ -177,19 +180,29 @@
           </div>
           <button class="icon-btn" onclick="toggleFullscreen()">⛶</button>
           <button class="icon-btn" id="theme-toggle">🌙</button>
-          <button class="icon-btn" onclick="alert('Search feature requires a backend or Indexing. For now, use Ctrl+F')">🔍</button>
+          <button class="icon-btn" onclick="alert('Use Ctrl+F to search this page.')">🔍</button>
         </div>
       </div>
 
       <div class="inner-content">
+        <div class="content-header" style="display:flex; justify-content:space-between; margin-bottom: 2rem; font-size: 0.85rem; color: #6c757d;">
+          <span>Contents > Index</span>
+          <a href="https://github.com/pinoji" style="text-decoration:none; color:var(--primary-blue); display:flex; align-items:center; gap:6px;">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16"> repository
+          </a>
+        </div>
+
         <section id="research">
           <h1>Physical Chemistry Through Computer Simulations <a href="#research" class="anchor">#</a></h1>
-          <p>I am an Associate Professor of Physical Chemistry at <strong>Arkansas State University</strong>. My research focuses on developing high-performance computational methodologies for molecular and biomolecular interactions.</p>
+          <p>
+            I am an Associate Professor of Physical Chemistry at <strong>Arkansas State University</strong>. 
+            My research focuses on developing high-performance computational methodologies to quantify complex molecular and biomolecular interactions.
+          </p>
         </section>
 
         <section id="textbook-en">
           <h2>Computational Physical Chemistry (EN) <a href="#textbook-en" class="anchor">#</a></h2>
-          <p>Interactive textbook and course materials.</p>
+          <p>Interactive textbook and course materials for undergraduate studies.</p>
           <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
           <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
         </section>
@@ -204,7 +217,7 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // 1. Sidebar Toggle
+    // 1. Retractable Sidebar Logic
     function toggleSidebar() {
       const sidebar = document.getElementById("mySidebar");
       const content = document.getElementById("mainContent");
@@ -212,12 +225,12 @@
       content.classList.toggle("full-width");
     }
 
-    // 2. Download Dropdown
+    // 2. Download Dropdown Logic
     function toggleDownload() {
       document.getElementById("downloadDropdown").classList.toggle("show");
     }
 
-    // 3. Fullscreen
+    // 3. Fullscreen Logic
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
@@ -226,7 +239,7 @@
       }
     }
 
-    // 4. Dark Mode Logic
+    // 4. Dark Mode Logic with Storage
     const themeBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -242,12 +255,12 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
-    // Close dropdown if clicked outside
+    // Close dropdowns if clicking elsewhere
     window.onclick = function(event) {
       if (!event.target.matches('.icon-btn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
           if (openDropdown.classList.contains('show')) {
             openDropdown.classList.remove('show');
           }
