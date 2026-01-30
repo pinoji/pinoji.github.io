@@ -37,7 +37,7 @@
 
     .wrapper { display: flex; min-height: 100vh; position: relative; }
 
-    /* Retractable Sidebar Styling */
+    /* Retractable Sidebar */
     .sidebar {
       width: var(--sidebar-width);
       background-color: var(--sidebar-bg);
@@ -47,12 +47,13 @@
       padding: 1.5rem;
       overflow-y: auto;
       z-index: 1000;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease-in-out;
       left: 0;
+      top: 0;
     }
 
-    /* Hidden state for retractable effect */
-    .sidebar.hidden { transform: translateX(-100%); }
+    /* Hidden state */
+    .sidebar.collapsed { transform: translateX(-100%); }
 
     .sidebar h3 { font-size: 1.1rem; color: var(--text-color); margin-bottom: 1.5rem; }
     .nav-links { list-style: none; padding: 0; margin: 0; }
@@ -73,12 +74,12 @@
       margin-left: var(--sidebar-width);
       flex-grow: 1;
       width: calc(100% - var(--sidebar-width));
-      transition: margin-left 0.3s ease, width 0.3s ease;
+      transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
       display: flex;
       flex-direction: column;
     }
 
-    .content.full-width { margin-left: 0; width: 100%; }
+    .content.expanded { margin-left: 0; width: 100%; }
 
     /* Responsive Sticky Top Bar */
     .top-bar {
@@ -98,34 +99,11 @@
     .top-bar-right { display: flex; gap: 1.5rem; font-size: 1.1rem; align-items: center; }
     .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; padding: 5px; }
 
-    /* Dropdown for Download Button */
-    .dropdown { position: relative; display: inline-block; }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: var(--sidebar-bg);
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1001;
-      border-radius: 4px;
-      border: 1px solid var(--border-color);
-    }
-    .dropdown-content a {
-      color: var(--text-color);
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-size: 0.9rem;
-    }
-    .dropdown-content a:hover { background-color: var(--primary-blue); color: white; }
-    .show { display: block; }
-
     /* Inner Page Content */
-    .inner-content { padding: 2rem 3rem; max-width: 900px; margin: 0 auto; line-height: 1.6; }
+    .inner-content { padding: 2rem 3rem; max-width: 900px; margin: 0 auto; line-height: 1.6; width: 100%; box-sizing: border-box; }
 
     /* Typography & Gold Anchor */
-    h1 { font-size: 2.25rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+    h1 { font-size: 2.25rem; font-weight: 700; margin-top: 0; line-height: 1.2; position: relative; }
     h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
     .anchor { color: var(--anchor-gold); font-family: serif; text-decoration: none; margin-left: 10px; font-size: 1.8rem; }
 
@@ -147,8 +125,8 @@
     /* Mobile Logic */
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); }
-      .sidebar.active { transform: translateX(0); }
       .content { margin-left: 0; width: 100%; }
+      .sidebar.active { transform: translateX(0); }
     }
   </style>
 </head>
@@ -168,19 +146,13 @@
     <main class="content" id="mainContent">
       <div class="top-bar">
         <div class="top-bar-left">
-          <button class="icon-btn" onclick="toggleSidebar()">☰</button>
+          <button class="icon-btn" onclick="toggleSidebar()" title="Toggle Sidebar">☰</button>
         </div>
         <div class="top-bar-right">
-          <div class="dropdown">
-            <button class="icon-btn" onclick="toggleDownload()">📥</button>
-            <div id="downloadDropdown" class="dropdown-content">
-              <a href="#" onclick="window.print()">.pdf (Print page)</a>
-              <a href="https://github.com/pinoji" target="_blank">Source Repository</a>
-            </div>
-          </div>
-          <button class="icon-btn" onclick="toggleFullscreen()">⛶</button>
-          <button class="icon-btn" id="theme-toggle">🌙</button>
-          <button class="icon-btn" onclick="alert('Use Ctrl+F to search this page.')">🔍</button>
+          <button class="icon-btn" onclick="window.print()" title="Print/PDF">📥</button>
+          <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
+          <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode">🌙</button>
+          <button class="icon-btn" onclick="alert('Search feature requires indexing. Use Ctrl+F for now.')" title="Search">🔍</button>
         </div>
       </div>
 
@@ -202,44 +174,52 @@
 
         <section id="textbook-en">
           <h2>Computational Physical Chemistry (EN) <a href="#textbook-en" class="anchor">#</a></h2>
-          <p>Interactive textbook and course materials for undergraduate studies.</p>
+          <p>Complete Undergraduate Physical Chemistry Textbook and interactive course materials.</p>
           <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
           <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
         </section>
 
+        <section id="textbook-jp">
+          <h2>JP-PChemTextBook (JP) <a href="#textbook-jp" class="anchor">#</a></h2>
+          <p>Japanese version and instructional notes for Physical Chemistry.</p>
+          <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
+          <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repository</a>
+        </section>
+
         <footer>
-          <p>© <span id="y"></span> Hideya Koizumi & Eiko Koizumi.</p>
+          <p>
+            Contact: <a href="mailto:hkoizumi@astate.edu" style="color: inherit; text-decoration: none;">hkoizumi@astate.edu</a><br>
+            © <span id="y"></span> Hideya Koizumi & Eiko Koizumi.
+          </p>
         </footer>
       </div>
     </main>
   </div>
 
   <script>
+    // Set Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
     // 1. Retractable Sidebar Logic
     function toggleSidebar() {
       const sidebar = document.getElementById("mySidebar");
       const content = document.getElementById("mainContent");
-      sidebar.classList.toggle("hidden");
-      content.classList.toggle("full-width");
+      sidebar.classList.toggle("collapsed");
+      content.classList.toggle("expanded");
     }
 
-    // 2. Download Dropdown Logic
-    function toggleDownload() {
-      document.getElementById("downloadDropdown").classList.toggle("show");
-    }
-
-    // 3. Fullscreen Logic
+    // 2. Fullscreen Logic
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-      } else if (document.exitFullscreen) {
-        document.exitFullscreen();
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
       }
     }
 
-    // 4. Dark Mode Logic with Storage
+    // 3. Dark Mode Logic
     const themeBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
@@ -254,19 +234,6 @@
       themeBtn.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-
-    // Close dropdowns if clicking elsewhere
-    window.onclick = function(event) {
-      if (!event.target.matches('.icon-btn')) {
-        const dropdowns = document.getElementsByClassName("dropdown-content");
-        for (let i = 0; i < dropdowns.length; i++) {
-          let openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
   </script>
 </body>
 </html>
