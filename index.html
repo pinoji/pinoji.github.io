@@ -6,27 +6,28 @@
   <title>Hideya Koizumi — Physical Chemistry</title>
   <style>
     :root {
-      --bd-sidebar-width: 18.75rem;
-      --pst-color-primary: #007bff;
-      --pst-color-text-base: #333;
-      --pst-color-border: #dee2e6;
-      --pst-sidebar-bg: #f8f9fa;
+      --sidebar-width: 280px;
+      --primary-blue: #007bff;
+      --border-color: #dee2e6;
+      --sidebar-bg: #f8f9fa;
+      --anchor-gold: #c49a6c; /* Matching your screenshot */
+      --utility-bg: #111; /* Matching your screenshot */
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       margin: 0;
-      color: var(--pst-color-text-base);
+      color: #333;
       background-color: #fff;
     }
 
     .wrapper { display: flex; min-height: 100vh; }
 
-    /* Sidebar - Matching your P-Chem Textbook Site */
+    /* Sidebar Styling */
     .sidebar {
-      width: var(--bd-sidebar-width);
-      background-color: var(--pst-sidebar-bg);
-      border-right: 1px solid var(--pst-color-border);
+      width: var(--sidebar-width);
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid var(--border-color);
       position: fixed;
       height: 100vh;
       padding: 1.5rem;
@@ -42,24 +43,51 @@
       color: #555;
       font-size: 0.95rem;
       display: block;
-      padding: 0.4rem 0.8rem;
+      padding: 0.5rem;
       border-radius: 4px;
     }
-    .nav-links a:hover { background-color: #e9ecef; color: var(--pst-color-primary); }
+    .nav-links a:hover { background-color: #e9ecef; color: var(--primary-blue); }
 
     /* Main Content Area */
     .content {
-      margin-left: var(--bd-sidebar-width);
+      margin-left: var(--sidebar-width);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Dark Top Utility Bar */
+    .top-bar {
+      background-color: var(--utility-bg);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 25px;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-bar-right {
+      display: flex;
+      gap: 20px;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    .icon-btn { background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; }
+
+    /* Page Content Padding */
+    .inner-content {
       padding: 3rem 4rem;
-      max-width: 55rem;
+      max-width: 850px;
       line-height: 1.6;
     }
 
-    /* Berkeley-style Header */
     .content-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       margin-bottom: 2rem;
       font-size: 0.85rem;
       color: #6c757d;
@@ -67,36 +95,46 @@
 
     .github-link {
       text-decoration: none;
-      color: var(--pst-color-primary);
+      color: var(--primary-blue);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    /* Typography */
-    h1 { font-size: 2.25rem; font-weight: 700; border-bottom: 1px solid var(--pst-color-border); padding-bottom: 0.5rem; margin-top: 0; }
-    h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2.5rem; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+    /* Typography & Anchors */
+    h1 { 
+      font-size: 2.25rem; 
+      font-weight: 700; 
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
     
-    hr { border: 0; border-top: 1px solid var(--pst-color-border); margin: 2rem 0; }
+    .anchor {
+      color: var(--anchor-gold);
+      font-family: serif;
+      font-weight: 400;
+      text-decoration: none;
+      font-size: 1.8rem;
+    }
 
-    /* Buttons - Matching the Textbook style */
+    h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; }
+    
     .btn {
       display: inline-block;
-      padding: 0.4rem 0.8rem;
-      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
       text-decoration: none;
-      border: 1px solid var(--pst-color-border);
+      border: 1px solid var(--border-color);
       background-color: #fff;
-      color: var(--pst-color-primary);
-      font-size: 0.9rem;
-      margin-right: 0.5rem;
-      transition: background-color 0.2s;
+      color: var(--primary-blue);
+      margin-right: 10px;
+      font-weight: 500;
     }
-    .btn:hover { background-color: #f8f9fa; border-color: #adb5bd; }
-    .btn.primary { background-color: var(--pst-color-primary); color: #fff; border: none; }
-    .btn.primary:hover { background-color: #0069d9; }
+    .btn.primary { background-color: var(--primary-blue); color: #fff; border: none; }
 
-    footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--pst-color-border); color: #6c757d; font-size: 0.85rem; }
+    footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #6c757d; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -106,63 +144,75 @@
       <h3>Physical Chemistry</h3>
       <ul class="nav-links">
         <li><a href="#research">Research & Teaching</a></li>
-        <li><a href="#textbook-en">Textbook (EN)</a></li>
-        <li><a href="#textbook-jp">Textbook (JP)</a></li>
+        <li><a href="#textbook-en">P-Chem Textbook (EN)</a></li>
+        <li><a href="#textbook-jp">P-Chem Textbook (JP)</a></li>
         <li><a href="#projects">Other Projects</a></li>
       </ul>
     </nav>
 
     <main class="content">
-      <div class="content-header">
-        <span>Contents > Index</span>
-        <a href="https://github.com/pinoji" class="github-link">
-          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16"> repository
-        </a>
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <button class="icon-btn">☰</button>
+        </div>
+        <div class="top-bar-right">
+          <span title="Download" style="cursor:pointer">📥</span>
+          <span title="Fullscreen" style="cursor:pointer">⛶</span>
+          <span title="Toggle Dark Mode" style="cursor:pointer">🌙</span>
+          <span title="Search" style="cursor:pointer">🔍</span>
+        </div>
       </div>
 
-      <section id="research">
-        <h1>Research Topics and Teaching</h1>
-        <p>
-          I am interested in computational methodologies for quantifying complex molecular and biomolecular interactions. 
-          My work utilizes ab initio and DFT techniques to characterize fundamental energetic properties. 
-          Molecular dynamics simulations of large biological complexes are my central interest at this point.
-        </p>
-        <p>
-          Our most recent research introduces a novel approach designed to elucidate binding mechanics in enzyme-inhibitor 
-          complexes where ligand binding occurs within highly flexible protein environments.
-        </p>
-        <p>
-          I teach Physical Chemistry classes at <strong>Arkansas State University</strong>. 
-          You can reach me at <a href="mailto:hkoizumi@astate.edu" style="color: var(--pst-color-primary); text-decoration: none;">hkoizumi@astate.edu</a>.
-        </p>
-      </section>
+      <div class="inner-content">
+        <div class="content-header">
+          <span>Contents > Index</span>
+          <a href="https://github.com/pinoji" class="github-link">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16"> repository
+          </a>
+        </div>
 
-      <section id="textbook-en">
-        <h2>Computational Physical Chemistry (EN)</h2>
-        <p>Interactive textbook and course materials for undergraduate studies.</p>
-        <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
-        <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repo</a>
-      </section>
+        <section id="research">
+          <h1>Physical Chemistry Through Computer Simulations <a href="#research" class="anchor">#</a></h1>
+          <p>
+            I teach Physical Chemistry at <strong>Arkansas State University</strong>. 
+            My research focuses on developing high-performance computational methodologies to quantify complex molecular and biomolecular interactions.
+          </p>
+          <p>
+            Our current work involves ab initio and DFT techniques, with a central interest in molecular dynamics simulations of large biological complexes. 
+            Specifically, we are elucidating binding mechanics in enzyme-inhibitor complexes within highly flexible protein environments.
+          </p>
+        </section>
 
-      <section id="textbook-jp">
-        <h2>JP-PChemTextBook (JP)</h2>
-        <p>Japanese version and lecture notes.</p>
-        <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
-        <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repo</a>
-      </section>
+        <section id="textbook-en">
+          <h2>Computational Physical Chemistry (EN) <a href="#textbook-en" class="anchor">#</a></h2>
+          <p>Complete Undergraduate Physical Chemistry Textbook and interactive course materials.</p>
+          <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
+          <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
+        </section>
 
-      <section id="projects">
-        <h2>Other Projects</h2>
-        <p>Additional codes and resources related to my research:</p>
-        <ul>
-          <li><a href="https://github.com/pinoji/WEIE" style="color: var(--pst-color-primary);">WEIE</a></li>
-          <li><a href="https://github.com/pinoji/Physical_Chemistry" style="color: var(--pst-color-primary);">Physical_Chemistry</a></li>
-        </ul>
-      </section>
+        <section id="textbook-jp">
+          <h2>JP-PChemTextBook (JP) <a href="#textbook-jp" class="anchor">#</a></h2>
+          <p>Japanese version and instructional notes for Physical Chemistry.</p>
+          <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
+          <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repository</a>
+        </section>
 
-      <footer>
-        © <span id="y"></span> Hideya Koizumi & Eiko Koizumi.
-      </footer>
+        <section id="projects">
+          <h2>Other Projects <a href="#projects" class="anchor">#</a></h2>
+          <p>Research codes and related tools:</p>
+          <ul style="line-height: 2;">
+            <li><a href="https://github.com/pinoji/WEIE" style="color: var(--primary-blue);">WEIE</a></li>
+            <li><a href="https://github.com/pinoji/Physical_Chemistry" style="color: var(--primary-blue);">Physical_Chemistry</a></li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>
+            Contact: <a href="mailto:hkoizumi@astate.edu" style="color: #666;">hkoizumi@astate.edu</a><br>
+            © <span id="y"></span> Hideya Koizumi & Eiko Koizumi.
+          </p>
+        </footer>
+      </div>
     </main>
   </div>
 
