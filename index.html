@@ -18,7 +18,6 @@
       --border-color: #dee2e6;
     }
 
-    /* Dark Theme Variables */
     body.dark-mode {
       --bg-color: #121212;
       --text-color: #e0e0e0;
@@ -37,7 +36,7 @@
 
     .wrapper { display: flex; min-height: 100vh; position: relative; }
 
-    /* Retractable Sidebar */
+    /* Retractable Sidebar - Matches the 'Toggle primary sidebar' logic */
     .sidebar {
       width: var(--sidebar-width);
       background-color: var(--sidebar-bg);
@@ -47,12 +46,12 @@
       padding: 1.5rem;
       overflow-y: auto;
       z-index: 1000;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       left: 0;
       top: 0;
     }
 
-    /* Hidden state */
+    /* This class triggers the retraction */
     .sidebar.collapsed { transform: translateX(-100%); }
 
     .sidebar h3 { font-size: 1.1rem; color: var(--text-color); margin-bottom: 1.5rem; }
@@ -69,19 +68,19 @@
     }
     .nav-links a:hover { background-color: rgba(0,0,0,0.05); color: var(--primary-blue); opacity: 1; }
 
-    /* Main Content Area adjustments for retractable sidebar */
+    /* Content Area - Expands when sidebar is collapsed */
     .content {
       margin-left: var(--sidebar-width);
       flex-grow: 1;
       width: calc(100% - var(--sidebar-width));
-      transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
+      transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
     }
 
-    .content.expanded { margin-left: 0; width: 100%; }
+    .content.full-width { margin-left: 0; width: 100%; }
 
-    /* Responsive Sticky Top Bar */
+    /* Top Utility Bar - Black as seen in screenshots */
     .top-bar {
       background-color: var(--utility-bg);
       color: #fff;
@@ -102,14 +101,14 @@
     /* Inner Page Content */
     .inner-content { padding: 2rem 3rem; max-width: 900px; margin: 0 auto; line-height: 1.6; width: 100%; box-sizing: border-box; }
 
-    /* Typography & Gold Anchor */
-    h1 { font-size: 2.25rem; font-weight: 700; margin-top: 0; line-height: 1.2; position: relative; }
-    h2 { font-size: 1.5rem; margin-top: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
-    .anchor { color: var(--anchor-gold); font-family: serif; text-decoration: none; margin-left: 10px; font-size: 1.8rem; }
+    /* Typography & Gold Anchor symbol (#) */
+    h1 { font-size: 2.5rem; font-weight: 700; margin-top: 0; line-height: 1.2; }
+    .anchor { color: var(--anchor-gold); font-family: serif; text-decoration: none; margin-left: 10px; font-size: 1.8rem; font-weight: 400; }
+    h2 { font-size: 1.6rem; margin-top: 3rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
 
     .btn {
       display: inline-block;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 6px;
       text-decoration: none;
       border: 1px solid var(--border-color);
@@ -122,11 +121,10 @@
 
     footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); color: #6c757d; font-size: 0.9rem; }
 
-    /* Mobile Logic */
     @media (max-width: 768px) {
       .sidebar { transform: translateX(-100%); }
-      .content { margin-left: 0; width: 100%; }
       .sidebar.active { transform: translateX(0); }
+      .content { margin-left: 0; width: 100%; }
     }
   </style>
 </head>
@@ -146,21 +144,21 @@
     <main class="content" id="mainContent">
       <div class="top-bar">
         <div class="top-bar-left">
-          <button class="icon-btn" onclick="toggleSidebar()" title="Toggle Sidebar">☰</button>
+          <button class="icon-btn" onclick="toggleSidebar()" title="Toggle primary sidebar">☰</button>
         </div>
         <div class="top-bar-right">
-          <button class="icon-btn" onclick="window.print()" title="Print/PDF">📥</button>
+          <button class="icon-btn" onclick="window.print()" title="Download PDF">📥</button>
           <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
-          <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode">🌙</button>
-          <button class="icon-btn" onclick="alert('Search feature requires indexing. Use Ctrl+F for now.')" title="Search">🔍</button>
+          <button class="icon-btn" id="theme-toggle" title="Toggle light/dark mode">🌙</button>
+          <button class="icon-btn" onclick="alert('Search feature requires a static index. Use Ctrl+F for now.')" title="Search">🔍</button>
         </div>
       </div>
 
       <div class="inner-content">
-        <div class="content-header" style="display:flex; justify-content:space-between; margin-bottom: 2rem; font-size: 0.85rem; color: #6c757d;">
+        <div class="content-header" style="display:flex; justify-content:space-between; margin-bottom: 2.5rem; font-size: 0.9rem; color: #6c757d;">
           <span>Contents > Index</span>
-          <a href="https://github.com/pinoji" style="text-decoration:none; color:var(--primary-blue); display:flex; align-items:center; gap:6px;">
-            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="16"> repository
+          <a href="https://github.com/pinoji" style="text-decoration:none; color:var(--primary-blue); display:flex; align-items:center; gap:8px;">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="18"> repository
           </a>
         </div>
 
@@ -174,52 +172,39 @@
 
         <section id="textbook-en">
           <h2>Computational Physical Chemistry (EN) <a href="#textbook-en" class="anchor">#</a></h2>
-          <p>Complete Undergraduate Physical Chemistry Textbook and interactive course materials.</p>
+          <p>Interactive textbook and course materials for undergraduate studies.</p>
           <a class="btn primary" href="https://pinoji.github.io/PhysicalChemistryThroughComputerSimulations/">Open site</a>
           <a class="btn" href="https://github.com/pinoji/PhysicalChemistryThroughComput">Repository</a>
         </section>
 
-        <section id="textbook-jp">
-          <h2>JP-PChemTextBook (JP) <a href="#textbook-jp" class="anchor">#</a></h2>
-          <p>Japanese version and instructional notes for Physical Chemistry.</p>
-          <a class="btn" href="https://pinoji.github.io/JP-PChemTextBook/">Open site</a>
-          <a class="btn" href="https://github.com/pinoji/JP-PChemTextBook">Repository</a>
-        </section>
-
         <footer>
-          <p>
-            Contact: <a href="mailto:hkoizumi@astate.edu" style="color: inherit; text-decoration: none;">hkoizumi@astate.edu</a><br>
-            © <span id="y"></span> Hideya Koizumi & Eiko Koizumi.
-          </p>
+          <p>© <span id="y"></span> Hideya Koizumi & Eiko Koizumi.</p>
         </footer>
       </div>
     </main>
   </div>
 
   <script>
-    // Set Year
     document.getElementById("y").textContent = new Date().getFullYear();
 
-    // 1. Retractable Sidebar Logic
+    // 1. Sidebar Retraction Logic - Matches Textbook behavior
     function toggleSidebar() {
       const sidebar = document.getElementById("mySidebar");
       const content = document.getElementById("mainContent");
       sidebar.classList.toggle("collapsed");
-      content.classList.toggle("expanded");
+      content.classList.toggle("full-width");
     }
 
     // 2. Fullscreen Logic
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+      } else if (document.exitFullscreen) {
+        document.exitFullscreen();
       }
     }
 
-    // 3. Dark Mode Logic
+    // 3. Dark Mode with Storage
     const themeBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
